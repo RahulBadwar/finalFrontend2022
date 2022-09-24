@@ -8,6 +8,9 @@ const Passanger=()=>{
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       localStorage.removeItem('user.userid');
+      localStorage.removeItem('userid');
+localStorage.removeItem('email');
+localStorage.removeItem('mobile');
       console.log("log in buuton clicked");
       //props.history.push("/");
       console.log("log in buuton clicked");
@@ -28,7 +31,7 @@ const Passanger=()=>{
                   style={{ fontSize: "20px" }}
                 >
                   <li className="nav-item">
-                    <Link to="/admin" style={{textDecoration:"none"}}>
+                    <Link to="/passanger" style={{textDecoration:"none"}}>
                       <span className="nav-link">Home</span>
                       </Link>
                   </li>
@@ -40,30 +43,21 @@ const Passanger=()=>{
                       <span className="nav-link me-5">New Bus Booking</span>
                       </Link>
                   </li>
-    
                   <li className="nav-item">
-                   
-                      <span className="nav-link">Add Schedule</span>
-                   
+                  <Link to="/" style={{textDecoration:"none"}}>
+                      <span className="nav-link me-5">View Booking</span>
+                      </Link>
                   </li>
     
+                 
                   
-                  <li className="nav-item">
-                    <Link to="/add-rotes" style={{textDecoration:"none"}}>
-                    <span className="nav-link">Add Route</span>
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <Link to="/bus-schedule" style={{textDecoration:"none"}}>
-                    <span className="nav-link">Schedule Bus</span>
-                    </Link>
-                </li>
+               
                 
     
     
                   <li className="nav-item">
                   
-                      <button className="btn btn-outline-warning " onClick={Logout}>
+                      <button className="btn btn-outline-warning pt-0 pb-0 " onClick={Logout}>
                         <Link to='log-in' style={{textDecoration:"none"}} >
                         <span
                           className="nav-link fs-6

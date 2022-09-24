@@ -9,6 +9,9 @@ const Logout=()=>{
 localStorage.removeItem('token');
 localStorage.removeItem('user');
 localStorage.removeItem('user.userid');
+localStorage.removeItem('userid');
+localStorage.removeItem('email');
+localStorage.removeItem('password');
 console.log("log in buuton clicked");
 props.history.push("/");
 console.log("log in buuton clicked");
@@ -45,17 +48,9 @@ console.log("log in buuton clicked");
                
               </li>
 
-              <li className="nav-item">
-               
-                  <span className="nav-link">View My Profile</span>
-               
-              </li>
+             
 
-              <li className="nav-item">
-                
-                  <span className="nav-link">Edit Profile</span>
-              
-              </li>
+             
               <li className="nav-item">
                 <Link to="/add-bus" style={{textDecoration:"none"}}>
                 <span className="nav-link">Add Bus</span>
@@ -64,7 +59,7 @@ console.log("log in buuton clicked");
 
               <li className="nav-item">
               
-                  <button className="btn btn-outline-warning " onClick={Logout}>
+                  <button className="btn btn-outline-warning pt-0 pb-0" onClick={Logout}>
                     <Link to='log-in' style={{textDecoration:"none"}} >
                     <span
                       className="nav-link fs-6

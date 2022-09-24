@@ -106,7 +106,7 @@ export default class BusScheduleScreen extends React.Component {
         ) : (
           <div>
             <AdminNavigation />
-            
+            <div className="form form-control mt-5">
             <div className="row">
               <div className="col-md-4"></div>
               <div className="col-md-6 fs-5" style={{}}>
@@ -173,6 +173,7 @@ export default class BusScheduleScreen extends React.Component {
                   </button>
                 </div>
               </div>
+            </div>
             </div>
           </div>
         )}
