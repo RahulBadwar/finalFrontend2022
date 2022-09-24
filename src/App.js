@@ -22,6 +22,7 @@ import AddRouteScreen from './Screen/AddRouteScreen';
 import BusScheduleScreen from './Screen/BusScheduleScreen';
 import PassangerHome from './Screen/PassangerHome';
 import ViewBusScreen from './Screen/ViewBusScreen';
+import UserBooking from './Screen/UserBooking';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
 
         <Route path='/passanger' component={PassangerHome} />
         <Route path='/view-bus' component={ViewBusScreen} />
+        <Route path='/passanger-booking' component={UserBooking} />
         
 
         <Route path='/' component={Home} />

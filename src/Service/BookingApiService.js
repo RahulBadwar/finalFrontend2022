@@ -10,8 +10,8 @@ const header = {
 };
 
 class ApiService {
-  showBookings(userId) {
-    return axios.get("/booking/my-bookings/" + userId, header);
+  showBookings(userid) {
+    return axios.get("/booking/my-bookings/" + userid, header);
   }
   checkReservation(bId) {
     console.log(`booking id : ${bId}`);

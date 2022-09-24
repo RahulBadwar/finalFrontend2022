@@ -44,7 +44,7 @@ localStorage.removeItem('mobile');
                       </Link>
                   </li>
                   <li className="nav-item">
-                  <Link to="/" style={{textDecoration:"none"}}>
+                  <Link to="/passanger-booking" style={{textDecoration:"none"}}>
                       <span className="nav-link me-5">View Booking</span>
                       </Link>
                   </li>

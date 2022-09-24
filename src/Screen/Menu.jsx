@@ -1,8 +1,15 @@
 import React from "react";
 import MenuCard from "./Menucard";
+import { Link, useHistory } from "react-router-dom";
 
-const Menu = () => {
-  const addToCartHandler = (itemNum) => {};
+const Menu = (props) => {
+
+  const history=useHistory();
+  const addToCartHandler = () => {
+    //alert("clicked")
+history.push('/log-in');
+
+  };
 
   return (
     <section id="menu">
