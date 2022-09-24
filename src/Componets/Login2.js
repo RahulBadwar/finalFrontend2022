@@ -26,6 +26,8 @@ console.log(res);
 localStorage.setItem("token", res.data.jwt);
 localStorage.setItem("user", res.data.user);
 localStorage.setItem("userid", res.data.user.userid);
+localStorage.setItem("email", res.data.user.email);
+localStorage.setItem("mobile", res.data.user.mobile);
 console.log(res.data.user.role);
 
 if (

@@ -52,6 +52,7 @@ class ViewBusScreen extends Component {
     BusApiService.viewBus(bus)
       .then((response) => {
         console.log(`Response : ${response.status}`);
+        console.log(response);
         this.setState({ message: "Bus details." });
         this.setState({
           busList: response.data,
@@ -96,7 +97,7 @@ class ViewBusScreen extends Component {
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
   onSelectBus = (bus) => {
     // const bus = find(this.state.busList, { bus: { id: `${busId}` } });
-    console.log(`bus-id : ${bus.bus.id}`);
+    console.log(`bus-id : ${bus.bus.busid}`);
     this.setState({
       selectedBus: bus.bus,
       seats: bus.bus.totalSeats,
@@ -121,10 +122,12 @@ class ViewBusScreen extends Component {
       dateofJourny: this.state.dateOfJourney,
       bookType: "COUCH",
     };
+
+    console.log("userid is"+localStorage.getItem("userid"));
     BookingApiService.addBooking(booking).then((response) => {
       console.log(`request warningful`);
       swal("Booking Successful",`seat booked : ${this.state.seatNo}`,"success");
-      this.props.history.push("/make-payment");
+      this.props.history.push("/passanger");
       //alert(`seat booked`);
     }).catch((error) => {
       swal("Booking Successful",`seat booked : ${this.state.seatNo}`,"success");
@@ -162,7 +165,7 @@ class ViewBusScreen extends Component {
           <label style={{display:"block", marginBottom:"10px",marginTop:"5px"}}>To :</label>
           <select name="to"  style={{width:"30vw", padding:"5px"}}  onChange={this.onChange}>
             <option value={"None"}>{"None"}</option>
-            <option value={"Kolhapur"}>{"Kolhapur"}</option>
+           
             {this.state.routes.length > 0 &&
               this.state.routes
                 .filter((route) => route.source === this.state.from)

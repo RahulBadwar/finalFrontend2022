@@ -1,9 +1,17 @@
 import Owner from "../Componets/OwnerNavbar"
 import Passanger from "../Componets/PassangerNavBar"
+import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
-const PassangerHome=()=>{
+const PassangerHome=(props)=>{
 
+  
+            if(localStorage.getItem("userid")===null)
+         {
+props.history.push('/log-in')
+         }
     return(
+      
         <div>
             <Passanger/>
         <div>

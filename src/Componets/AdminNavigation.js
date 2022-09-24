@@ -39,12 +39,7 @@ const AdminNavigation = (props) => {
                
               </li>
 
-              <li className="nav-item">
-               
-                  <span className="nav-link">Add Schedule</span>
-               
-              </li>
-
+              
               
               <li className="nav-item">
                 <Link to="/add-rotes" style={{textDecoration:"none"}}>
@@ -61,7 +56,7 @@ const AdminNavigation = (props) => {
 
               <li className="nav-item">
               
-                  <button className="btn btn-outline-warning " onClick={Logout}>
+                  <button className="btn btn-outline-warning pt-0 pb-0" onClick={Logout}>
                     <Link to='log-in' style={{textDecoration:"none"}} >
                     <span
                       className="nav-link fs-6
