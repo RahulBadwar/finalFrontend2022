@@ -41,7 +41,7 @@ class ViewBookingsScreen extends Component {
     return (
       <div>
         {this.state.user === null ? (
-          this.props.history.push("/signin")
+          this.props.history.push("/log-in")
         ) : (
           <div>
             <OwnerNavigation />

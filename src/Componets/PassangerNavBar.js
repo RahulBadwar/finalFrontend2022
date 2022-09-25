@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-
+import Moment from 'react-moment';
+import moment from "moment";
 const Passanger=()=>{
 
 
@@ -49,7 +50,9 @@ localStorage.removeItem('mobile');
                       </Link>
                   </li>
     
-                 
+                  <li className="nav-item">
+                  {moment().format("YYYY-MM-DD hh:mm a")}
+                  </li>
                   
                
                 
@@ -70,6 +73,7 @@ localStorage.removeItem('mobile');
                       </button>
                    
                   </li>
+                 
                 </ul>
               </div>
             </div>
@@ -78,3 +82,8 @@ localStorage.removeItem('mobile');
       );
 }
 export default Passanger;
+
+
+const Time=()=>{
+  moment().format("YYYY-MM-DD hh:mm a")
+}

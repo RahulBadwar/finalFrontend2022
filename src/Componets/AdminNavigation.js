@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import moment from "moment";
 const AdminNavigation = (props) => {
   const Logout=()=>{
     //const history = useHistory();
@@ -51,7 +51,9 @@ const AdminNavigation = (props) => {
                 <span className="nav-link">Schedule Bus</span>
                 </Link>
             </li>
-            
+            <li className="nav-item">
+                  {moment().format("YYYY-MM-DD hh:mm a")}
+                  </li>
 
 
               <li className="nav-item">

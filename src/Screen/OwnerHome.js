@@ -6,10 +6,14 @@ const OwnerHome=()=>{
   const history = useHistory();
 
   const user = localStorage.getItem('user')
-  console.log(user.email);
+  //console.log(user.email);
   console.log(user);
-  if(user === null||user===undefined) 
+
+  //alert("in idf")
+  if(user === null||user===undefined) {
+    //alert("in idf")
           history.push("/log-in");
+  }
     return(
       
         <div>

@@ -7,6 +7,8 @@ const Menu = (props) => {
   const history=useHistory();
   const addToCartHandler = () => {
     //alert("clicked")
+    //alert(history)
+    //console.log(history);
 history.push('/log-in');
 
   };

@@ -66,7 +66,7 @@ import Passanger from "../Componets/PassangerNavBar";
                   
                   <th scope="col">From</th>
                   <th scope="col">To</th>
-                  <th scope="col">Boarding</th>
+                  <th scope="col">Seat Number</th>
                   <th scope="col">Date</th>
                   <th scope="col">Bus Name</th>
                   <th scope="col">Bus Type</th>

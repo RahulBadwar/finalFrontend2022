@@ -26,6 +26,7 @@ class ViewBusScreen extends Component {
       seats: -1,
       seatNo: -1,
       selectedBus: {},
+      dateofj:"",
       user: localStorage.getItem('user')
     };
     this.fetchBus = this.fetchBus.bind(this);
@@ -56,6 +57,8 @@ class ViewBusScreen extends Component {
         this.setState({ message: "Bus details." });
         this.setState({
           busList: response.data,
+          dateofj:response.data[0].depttime
+
         });
         this.state.busList.map((bus) => {
           console.log(`data : ${bus.bus.busName}`);
@@ -141,7 +144,7 @@ class ViewBusScreen extends Component {
       <div>
         {
           this.state.user === null ?
-            this.props.history.push("/signin")
+            this.props.history.push("/log-in")
             :
             <div >
               <Passanger />
@@ -214,9 +217,9 @@ class ViewBusScreen extends Component {
                   <tr>
                     <td>{bus.bus.busName}</td>
                     <td>
-                      {moment(bus.arrivalTime).format("YYYY-MM-DD hh:mm a")}
+                      {this.state.dateofj}
                     </td>
-                    <td>{moment(bus.deptTime).format("YYYY-MM-DD hh:mm a")}</td>
+                    <td>{this.state.dateofj}</td>
                     <td>{bus.bus.busType}</td>
                     <td>
                       <button
@@ -241,6 +244,8 @@ class ViewBusScreen extends Component {
                     <table class="table">
                       <tbody >
                         <tr>
+
+                          
                           <td>
                             <button
                               type="button"
