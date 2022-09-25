@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import Moment from 'react-moment';
 import moment from "moment";
-const Passanger=()=>{
+const Passanger=(props)=>{
 
+  if(localStorage.getItem('user')===null&&localStorage.getItem('user')===undefined){
+    props.history.push('/log-in')
+  }
 
     const Logout=()=>{
         //const history = useHistory();

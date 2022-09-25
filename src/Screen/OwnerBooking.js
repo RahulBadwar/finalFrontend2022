@@ -1,15 +1,18 @@
 import { Component } from "react";
-//import OwnerNavigation from "../components/OwnerNavigation";
+//import ManagerNavigation from "../components/ManagerNavigation";
 import BookingApiService from "../Service/BookingApiService";
 import swal from "sweetalert";
+import OwnerNavbar from "../Componets/OwnerNavbar";
+import Owner from "../Componets/OwnerNavbar"
 
-class ViewBookingsScreen extends Component {
+class OwnerBooking extends Component {
   constructor(props) {
     super(props);
     this.state = {
       bookings: [],
       message: null,
       user: localStorage.getItem("user"),
+      userid:localStorage.getItem("userid")
     };
     this.loadBookings = this.loadBookings.bind(this);
   }
@@ -18,7 +21,7 @@ class ViewBookingsScreen extends Component {
   }
 
   loadBookings() {
-    BookingApiService.viewBookings2(window.localStorage.getItem("busId")).then(
+    BookingApiService.viewBookings2(localStorage.getItem("userid")).then(
       (res) => {
         this.setState({
           bookings: res.data,
@@ -26,27 +29,32 @@ class ViewBookingsScreen extends Component {
         console.log("res : ", res);
         this.setState({ message: "Bookings List Fetched Successfully." });
       }
-    );
-  }
-  cancelBooking(e) {
+    ).catch((e)=>{
+        console.log(e);
+    });
+  } 
+  /* cancelBooking(e) {
     //const bookID = localStorage.getItem("bookId");
     BookingApiService.cancelBooking(e).then((res) => {
       this.setState({ message: "Booking Cancelled successfully." });
       swal("Booking Cancelled successfully", "success");
-      this.props.history.push("/owner");
+      this.props.history.push("/manager");
     });
-  }
+  } */
 
   render() {
     return (
       <div>
-       
+        
           <div>
-            <OwnerNavigation />
+            <Owner/>
             <div className="mb-3">
               <h2 className="text-center mt-3 mb-3">View All Bookings</h2>
 
-              <table className="table table-striped table-hover">
+              <table
+                className="table table-striped table-hover mt-2"
+                style={{ fontSize: "20px" }}
+              >
                 <thead>
                   <tr>
                     <th>Booking Id</th>
@@ -54,7 +62,7 @@ class ViewBookingsScreen extends Component {
                     <th>Bus Number</th>
                     <th>Date Of Journey</th>
                     <th>Date Of Booking</th>
-                    <th>Booking Type</th>
+                    
                     <th>Seat Number</th>
                     <th>Fare</th>
                     <th scope="col">Action</th>
@@ -64,18 +72,18 @@ class ViewBookingsScreen extends Component {
                   {this.state.bookings.map((booking) => {
                     return (
                       <tr>
-                        <td>{booking.id}</td>
+                        <td>{booking.bookingid}</td>
                         <td>{booking.bus.busName}</td>
                         <td>{booking.bus.busNumber}</td>
-                        <td>{booking.dateOfJourney}</td>
-                        <td>{booking.dateOfBooking}</td>
-                        <td>{booking.bookType}</td>
+                        <td>{booking.dateofJourny}</td>
+                        <td>{booking.dateofBooking}</td>
+                        
                         <td>{booking.seatNumber}</td>
-                        <td>{booking.fare}</td>
+                        <td>{booking.fareAmount}</td>
                         <td>
                           <button
                             type="button"
-                            class="btn btn-danger btn-md"
+                            class="btn btn-danger btn-md mt-0"
                             onClick={() => this.cancelBooking(booking.id)}
                           >
                             Cancel
@@ -88,10 +96,10 @@ class ViewBookingsScreen extends Component {
               </table>
             </div>
           </div>
-       
+        
       </div>
     );
   }
 }
 
-export default ViewBookingsScreen;
+export default OwnerBooking;

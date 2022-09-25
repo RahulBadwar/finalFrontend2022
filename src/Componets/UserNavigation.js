@@ -9,6 +9,13 @@ import {
   NavDropdown,
 } from "react-bootstrap";
 const UserNavigation = (props) => {
+
+  if(localStorage.getItem('user')===null&&localStorage.getItem('user')===undefined){
+    props.history.push('/log-in')
+  }
+  
+
+
   return (
     <div className="">
       <nav

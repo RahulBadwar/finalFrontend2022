@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:9001"; //"https://immense-retreat-08081.herokuapp.com";
+axios.defaults.baseURL = "http://localhost:9001"; 
 
 const header = {
   headers: {
@@ -18,6 +18,10 @@ class BusApiService {
   viewBus(bus) {
     return axios.post("/bus/view-bus", bus, header);
   }
+  viewBus1(userid) {
+    return axios.post("/bus/view-bus1", userid, header);
+  }
+
 }
 
 export default new BusApiService();
