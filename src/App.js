@@ -22,6 +22,10 @@ import AddRouteScreen from './Screen/AddRouteScreen';
 import BusScheduleScreen from './Screen/BusScheduleScreen';
 import PassangerHome from './Screen/PassangerHome';
 import ViewBusScreen from './Screen/ViewBusScreen';
+import UserBooking from './Screen/UserBooking';
+import AdminBooking from './Screen/AdminBooking';
+import OwnerBooking from './Screen/OwnerBooking';
+import OwnerBus from './Screen/OwnerBus';
 
 function App() {
   return (
@@ -31,15 +35,23 @@ function App() {
        
         <Route path='/add-bus' component={AddBus} />
         <Route path='/owner-home' component={OwnerHome}/>
+        <Route path='/owner-booking' component={OwnerBooking}/>
+        <Route path='/owner-bus' component={OwnerBus}/>
+
+
+
+
         <Route path='/sign-up' component={Signup} />
         <Route path='/log-in' component={Login2} />
         <Route path='/admin' component={AdminHome} />
         <Route path='/add-rotes' component={AddRouteScreen} />
         <Route path='/bus-schedule' component={BusScheduleScreen} />
+        <Route path='/admin-booking' component={AdminBooking} />
         
 
         <Route path='/passanger' component={PassangerHome} />
         <Route path='/view-bus' component={ViewBusScreen} />
+        <Route path='/passanger-booking' component={UserBooking} />
         
 
         <Route path='/' component={Home} />

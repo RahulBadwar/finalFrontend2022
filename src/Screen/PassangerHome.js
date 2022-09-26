@@ -37,7 +37,10 @@ props.history.push('/log-in')
             </div>
             <div class="col-sm"></div>
             <div class="col-sm">
-              <h4>NAME-{}</h4></div>
+            <h4>Email-{localStorage.getItem("email")}</h4>
+              <h4>Mobile Number-{localStorage.getItem("mobile")}</h4>
+              
+              </div>
           </div>
           <div class="row pt-5 pb-5">
             <div class="col-sm" style={{}}>

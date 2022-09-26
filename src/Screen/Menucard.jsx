@@ -26,7 +26,7 @@ const MenuCard = ({ itemNum, burgerSrc, Category, title, handler, delay = 0 }) =
 
         <p>{title}</p>
 
-        <button>Book</button>
+        <button onClick={handler}>Book</button>
       </main>
     </motion.div>
   );

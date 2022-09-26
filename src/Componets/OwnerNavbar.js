@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import moment from "moment";
+
 const Owner=(props)=>{
 
+
+  if(localStorage.getItem('user')===null&&localStorage.getItem('user')===undefined){
+    props.history.push('/log-in')
+  }
 
 const Logout=()=>{
   //const history = useHistory();
@@ -12,8 +18,10 @@ localStorage.removeItem('user.userid');
 localStorage.removeItem('userid');
 localStorage.removeItem('email');
 localStorage.removeItem('password');
+localStorage.removeItem('mobile');
+
 console.log("log in buuton clicked");
-props.history.push("/");
+//props.history.push("/");
 console.log("log in buuton clicked");
 
 }
@@ -43,9 +51,14 @@ console.log("log in buuton clicked");
               
 
               <li className="nav-item">
-              
+              <Link to="/owner-booking" style={{textDecoration:"none"}}>
                   <span className="nav-link me-5">View Bookings</span>
-               
+                  </Link>
+              </li>
+              <li className="nav-item">
+              <Link to="/owner-bus" style={{textDecoration:"none"}}>
+                  <span className="nav-link me-5">View Buses</span>
+                  </Link>
               </li>
 
              

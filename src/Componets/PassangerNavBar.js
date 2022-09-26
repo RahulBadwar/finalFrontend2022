@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import Moment from 'react-moment';
+import moment from "moment";
+const Passanger=(props)=>{
 
-const Passanger=()=>{
-
+  if(localStorage.getItem('user')===null&&localStorage.getItem('user')===undefined){
+    props.history.push('/log-in')
+  }
 
     const Logout=()=>{
         //const history = useHistory();
@@ -44,12 +48,14 @@ localStorage.removeItem('mobile');
                       </Link>
                   </li>
                   <li className="nav-item">
-                  <Link to="/" style={{textDecoration:"none"}}>
+                  <Link to="/passanger-booking" style={{textDecoration:"none"}}>
                       <span className="nav-link me-5">View Booking</span>
                       </Link>
                   </li>
     
-                 
+                  <li className="nav-item">
+                  {moment().format("YYYY-MM-DD hh:mm a")}
+                  </li>
                   
                
                 
@@ -70,6 +76,7 @@ localStorage.removeItem('mobile');
                       </button>
                    
                   </li>
+                 
                 </ul>
               </div>
             </div>
@@ -78,3 +85,8 @@ localStorage.removeItem('mobile');
       );
 }
 export default Passanger;
+
+
+const Time=()=>{
+  moment().format("YYYY-MM-DD hh:mm a")
+}

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:9001"; //"https://immense-retreat-08081.herokuapp.com";
+axios.defaults.baseURL = "http://localhost:9001"; 
 
 const header = {
   headers: {
@@ -9,9 +9,10 @@ const header = {
   },
 };
 
+
 class ApiService {
-  showBookings(userId) {
-    return axios.get("/booking/my-bookings/" + userId, header);
+  showBookings(userid) {
+    return axios.get("/booking/my-bookings/" + userid, header);
   }
   checkReservation(bId) {
     console.log(`booking id : ${bId}`);
@@ -21,9 +22,14 @@ class ApiService {
     console.log(`bus id : ${busId}`);
     return axios.get("/booking/view-bookings/", header);
   }
-  viewBookings2(busId) {
-    console.log(`bus id : ${busId}`);
-    return axios.get("/booking/view-bookings-owner/", header);
+  viewBookings1() {
+   // console.log(`bus id : ${busId}`);
+    return axios.get("/booking/view-bookings/", header);
+  }
+  viewBookings2(userid) {
+    console.log(header);
+    //console.log(`bus id : ${busId}`);
+    return axios.put("/booking/view-bookings-owner",userid, header);
   }
 
   cancelBooking(bookId) {

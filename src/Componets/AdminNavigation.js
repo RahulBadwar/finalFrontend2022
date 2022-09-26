@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
-
+import moment from "moment";
 const AdminNavigation = (props) => {
+
+  if(localStorage.getItem('user')===null&&localStorage.getItem('user')===undefined){
+    props.history.push('/log-in')
+  }
+
   const Logout=()=>{
     //const history = useHistory();
   localStorage.removeItem('token');
@@ -34,9 +39,9 @@ const AdminNavigation = (props) => {
               
 
               <li className="nav-item">
-              
+              <Link to="/admin-booking" style={{textDecoration:"none"}}>
                   <span className="nav-link me-5">View Bookings</span>
-               
+                  </Link>
               </li>
 
               
@@ -51,7 +56,9 @@ const AdminNavigation = (props) => {
                 <span className="nav-link">Schedule Bus</span>
                 </Link>
             </li>
-            
+            <li className="nav-item">
+                  {moment().format("YYYY-MM-DD hh:mm a")}
+                  </li>
 
 
               <li className="nav-item">
