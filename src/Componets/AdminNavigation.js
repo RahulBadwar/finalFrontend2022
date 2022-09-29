@@ -1,10 +1,20 @@
 import { Link } from "react-router-dom";
 import moment from "moment";
+import React from "react";
+import { useState } from "react";
+
+
+
+
+
 const AdminNavigation = (props) => {
 
   if(localStorage.getItem('user')===null&&localStorage.getItem('user')===undefined){
     props.history.push('/log-in')
   }
+
+ 
+
 
   const Logout=()=>{
     //const history = useHistory();
@@ -16,6 +26,22 @@ const AdminNavigation = (props) => {
   console.log("log in buuton clicked");
   
   }
+
+  const[timer,setTime]=useState(new Date().toLocaleString('en-GB'));
+  // useEffect(()=>{
+  //   setTime(moment().format("DD-MM-YYYY hh:mm:ss a"));
+  // },1000);
+  
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(new Date().toLocaleString('en-GB'
+      ));
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -57,7 +83,7 @@ const AdminNavigation = (props) => {
                 </Link>
             </li>
             <li className="nav-item">
-                  {moment().format("YYYY-MM-DD hh:mm a")}
+                  {timer}
                   </li>
 
 

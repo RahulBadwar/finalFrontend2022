@@ -91,6 +91,14 @@ function Signup(props) {
     signup();
   };
 
+  const disableFutureDate = () => {
+    const today = new Date("2004-03-25");
+    const dd = String(today.getDate() - 1).padStart(2, "0");
+    const mm = String(today.getMonth() - 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    return yyyy + "-" + mm + "-" + dd;
+  };
+
   return (
     <>
       <Header />
@@ -131,7 +139,7 @@ function Signup(props) {
                       setUserDob(event.target.value);
                     }}
                     type="date"
-                    className="form-control d-inline"
+                    className="form-control d-inline" max={disableFutureDate()}
                   />
                 </div>
                 <label className="form-label mb-2">Gender</label>

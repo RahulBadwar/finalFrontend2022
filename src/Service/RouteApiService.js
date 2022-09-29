@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL =  "http://localhost:9001";  //"https://immense-retreat-08081.herokuapp.com";
+axios.defaults.baseURL =  "http://localhost:9001";  
 
 const header = {
   headers: {

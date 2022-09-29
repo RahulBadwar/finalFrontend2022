@@ -1,8 +1,6 @@
 import React from "react";
-//import Header from "../components/Header";
 import { find } from "lodash";
 import ManagerApiService from "../Service/ManagerApiService";
-//import ManagerNavigation from "../components/ManagerNavigation";
 import AdminNavigation from "../Componets/AdminNavigation";
 
 export default class BusScheduleScreen extends React.Component {
@@ -54,17 +52,9 @@ export default class BusScheduleScreen extends React.Component {
   onSelectBus(event) {
     let selectedBus = event.target.value;
     selectedBus = find(this.state.buses, { busName: selectedBus });
-    //let selectedBus = find(this.state.buses, { busName: selectedBus });
-    // let index = -1;
-    // for (let itr = 0; itr < this.state.buses.length; itr++) {
-    //   let currentBus = this.state.buses[itr];
-    //   if (currentBus["busName"] === selectedBus) {
-    //     index = itr;
-    //     break;
-    //   }
-    // }
+    
     if (selectedBus) {
-      //alert(selectedBus["id"]);
+      
       this.setState({ selectedBusId: selectedBus["busid"] });
     }
   }
@@ -88,8 +78,7 @@ export default class BusScheduleScreen extends React.Component {
       busid: this.state.selectedBusId,
       routeid: route.routeid,
     };
-    console.log(`arrival time : ${this.state.arrivalTime}`);
-    console.log(`dept  time : ${this.state.deptTime}`);
+    
     ManagerApiService.addScheduleDetails(busSchedule).then((response) => {
       console.log(`data : ${response.data}`);
       console.log(`status : ${response.status}`);
@@ -97,12 +86,18 @@ export default class BusScheduleScreen extends React.Component {
       this.props.history.push("/admin");
     });
   }
-
+   disableFutureDate = () => {
+    const today = new Date();
+    const dd = String(today.getDate() - 1).padStart(2, "0");
+    const mm = String(today.getMonth() - 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    return yyyy + "-" + mm + "-" + dd;
+  };
   render() {
     return (
       <div>
         {this.state.user === null ? (
-          this.props.history.push("/signin")
+          this.props.history.push("/log-in")
         ) : (
           <div>
             <AdminNavigation />
@@ -161,6 +156,7 @@ export default class BusScheduleScreen extends React.Component {
                     type="datetime-local"
                     id="deptTime"
                     name="deptTime"
+                    max={this.disableFutureDate()}
                     onChange={this.onChange}
                   ></input>
                 </div>

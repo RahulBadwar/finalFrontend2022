@@ -3,6 +3,7 @@ import React, { Component } from "react";
 
 import AdminNavigation from "../Componets/AdminNavigation";
 import RouteApiService from "../Service/RouteApiService";
+import swal from 'sweetalert'
 
 class AddRouteScreen extends Component {
   constructor(props) {
@@ -34,6 +35,17 @@ class AddRouteScreen extends Component {
 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
+  validate = (e) => {
+    if (this.state.source === "") {
+      swal("Error", "Please enter bus source", "error");
+      return false;
+    } else if (this.state.destination === "") {
+      swal("Error", "Please enter bus destination", "error");
+      return false;
+    }
+    this.saveRoute(e);
+   // AddRouteScreen.saveRoute(e);
+  };
   render() {
     return (
       <div>
@@ -66,7 +78,7 @@ class AddRouteScreen extends Component {
 
                 <button
                   className="btn btn-success me-2 mb-3"
-                  onClick={this.saveRoute}
+                  onClick={this.validate}
                 >
                   Add Route
                 </button>

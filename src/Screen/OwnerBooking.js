@@ -33,15 +33,7 @@ class OwnerBooking extends Component {
         console.log(e);
     });
   } 
-  /* cancelBooking(e) {
-    //const bookID = localStorage.getItem("bookId");
-    BookingApiService.cancelBooking(e).then((res) => {
-      this.setState({ message: "Booking Cancelled successfully." });
-      swal("Booking Cancelled successfully", "success");
-      this.props.history.push("/manager");
-    });
-  } */
-
+ 
   render() {
     return (
       <div>
@@ -65,7 +57,7 @@ class OwnerBooking extends Component {
                     
                     <th>Seat Number</th>
                     <th>Fare</th>
-                    <th scope="col">Action</th>
+                   
                   </tr>
                 </thead>
                 <tbody>
@@ -80,15 +72,7 @@ class OwnerBooking extends Component {
                         
                         <td>{booking.seatNumber}</td>
                         <td>{booking.fareAmount}</td>
-                        <td>
-                          <button
-                            type="button"
-                            class="btn btn-danger btn-md mt-0"
-                            onClick={() => this.cancelBooking(booking.id)}
-                          >
-                            Cancel
-                          </button>
-                        </td>
+                        
                       </tr>
                     );
                   })}

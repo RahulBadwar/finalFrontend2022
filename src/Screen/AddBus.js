@@ -1,9 +1,9 @@
 
 import React, { Component } from "react";
 import Header from "../Componets/Header";
-//import ManagerNavigation from "../components/ManagerNavigation";
 import Owner from "../Componets/OwnerNavbar";
 import BusApiService from "../Service/BusApiService";
+import swal from 'sweetalert';
 
 class AddBus extends Component {
   constructor(props) {
@@ -21,6 +21,23 @@ class AddBus extends Component {
       user: localStorage.getItem("user"),
     };
   }
+  
+
+  validate = (e) => {
+    if (this.state.busName === "") {
+      swal("Error", "Please enter bus name", "error");
+      return false;
+    } else if (this.state.busType === "") {
+      swal("Error", "Please enter bus type", "error");
+      return false;
+    } else if (this.state.busNumber === "") {
+      swal("Error", "Please enter bus number", "error");
+      return false;
+    } else if (this.state.totalSeats === "") {
+      swal("Error", "Please enter bus name", "error");
+      return false;
+    }
+  this.saveBus(e)}
 
   saveBus = (e) => {
     e.preventDefault();
@@ -107,7 +124,7 @@ class AddBus extends Component {
                   />
                 </div>
 
-                <button className="btn btn-success mb-3" onClick={this.saveBus}>
+                <button className="btn btn-success mb-3" onClick={this.validate}>
                   Add Bus
                 </button>
               </form>
