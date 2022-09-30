@@ -34,6 +34,16 @@ console.log(this.bus);
 
   }
 
+  cancelBus(e) {
+    BusApiService.removebus(e).then((e)=>{
+
+      console.log(e);
+    }).catch((r)=>{
+
+      console.log(r);
+    })
+  }
+
   render(){
   return(
     <div>
@@ -57,7 +67,7 @@ console.log(this.bus);
                     <th>Booked Seats</th>
 
                     <th>Fare</th>
-                    <th scope="col">Action</th>
+                  
                   </tr>
                 </thead>
                 <tbody>
@@ -74,15 +84,7 @@ console.log(this.bus);
                         <td>{b.bookedSeat}</td>
 
                         <td>{b.busFare}</td>
-                        <td>
-                          <button
-                            type="button"
-                            class="btn btn-danger btn-md mt-0"
-                            onClick={() => this.cancelBooking(b.busid)}
-                          >
-                            Remove Bus
-                          </button>
-                        </td>
+                         
                       </tr>
                     );
                   })}

@@ -5,9 +5,11 @@ import moment from "moment";
 
 const Owner=(props)=>{
 
+  console.log(localStorage.getItem('user'));
 
-  if(localStorage.getItem('user')===null&&localStorage.getItem('user')===undefined){
+  if(localStorage.getItem('user')===null||localStorage.getItem('user')===undefined){
     props.history.push('/log-in')
+    console.log("i am here");
   }
 
 const Logout=()=>{

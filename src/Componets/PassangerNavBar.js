@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import Moment from 'react-moment';
 import moment from "moment";
+import React from "react";
+import { useState } from "react";
 const Passanger=(props)=>{
 
   if(localStorage.getItem('user')===null&&localStorage.getItem('user')===undefined){
@@ -20,6 +22,25 @@ localStorage.removeItem('mobile');
       console.log("log in buuton clicked");
       
       }
+
+
+      
+      
+      const[timer,setTime]=useState(new Date().toLocaleString('en-GB'));
+  // useEffect(()=>{
+  //   setTime(moment().format("DD-MM-YYYY hh:mm:ss a"));
+  // },1000);
+  
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(new Date().toLocaleString('en-GB'
+      ));
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
       return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container-fluid">
@@ -54,7 +75,7 @@ localStorage.removeItem('mobile');
                   </li>
     
                   <li className="nav-item">
-                  {moment().format("YYYY-MM-DD hh:mm a")}
+                 {timer}
                   </li>
                   
                

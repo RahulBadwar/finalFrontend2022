@@ -14,14 +14,7 @@ class ApiService {
   showBookings(userid) {
     return axios.get("/booking/my-bookings/" + userid, header);
   }
-  checkReservation(bId) {
-    console.log(`booking id : ${bId}`);
-    return axios.get("/booking/check-reservation/" + bId, header);
-  }
-  viewBookings(busId) {
-    console.log(`bus id : ${busId}`);
-    return axios.get("/booking/view-bookings/", header);
-  }
+ 
   viewBookings1() {
    // console.log(`bus id : ${busId}`);
     return axios.get("/booking/view-bookings/", header);
@@ -34,7 +27,7 @@ class ApiService {
 
   cancelBooking(bookId) {
     console.log(`booking id : ${bookId}`);
-    return axios.delete("/booking/cancel-booking/" + bookId, header);
+    return axios.delete("/booking/my-bookings/" + bookId, header);
   }
   addBooking(booking) {
     console.log(`booking`);

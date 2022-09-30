@@ -21,7 +21,9 @@ class BusApiService {
   viewBus1(userid) {
     return axios.post("/bus/view-bus1", userid, header);
   }
-
+removebus(busid){
+  return axios.delete("/bus/delete-bus",busid,header)
+}
 }
 
 export default new BusApiService();

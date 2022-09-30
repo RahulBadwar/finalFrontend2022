@@ -1,14 +1,9 @@
 import React, { Component, useState } from "react";
-//import Header from "../Components/Header";
 import BusApiService from "../Service/BusApiService";
 import RouteApiService from "../Service/RouteApiService";
-//import UserNavigation from "./../components/UserNavigation";
-import moment from "moment";
 import { find } from "lodash";
 import BookingApiService from "../Service/BookingApiService";
-//import SignInScreen from "./SignInScreen";
 import viewBus from "../assets/view.png";
-//import signup from "../assets/signup.jpg"; 
 import swal from "sweetalert";
 import Passanger from "../Componets/PassangerNavBar";
 
@@ -27,7 +22,8 @@ class ViewBusScreen extends Component {
       seatNo: -1,
       selectedBus: {},
       dateofj:"",
-      user: localStorage.getItem('user')
+      user: localStorage.getItem('user'),
+      seats1:[]
     };
     this.fetchBus = this.fetchBus.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -40,10 +36,6 @@ class ViewBusScreen extends Component {
 
   fetchBus = (e) => {
     e.preventDefault();
-    console.log(`from : ${this.state.from}`);
-    console.log(`to : ${this.state.to}`);
-    console.log(`dateOfJourney : ${this.state.dateOfJourney}`);
-    console.log(`dateOfJourney : ${this.state.userName}`);
     const bus = {
       userName:this.state.userName,
       source: this.state.from,
@@ -52,20 +44,23 @@ class ViewBusScreen extends Component {
     };
     BusApiService.viewBus(bus)
       .then((response) => {
-        console.log(`Response : ${response.status}`);
         console.log(response);
         this.setState({ message: "Bus details." });
         this.setState({
           busList: response.data,
-          dateofj:response.data[0].depttime
+          dateofj:response.data[0].depttime,
+
 
         });
+        
         this.state.busList.map((bus) => {
-          console.log(`data : ${bus.bus.busName}`);
+          console.log(bus);
         });
+
+
       })
-      .catch((error) => {
-        console.log(`error : ${error}`);
+      .catch((e) => {
+        console.log(e);
       });
   };
 
@@ -73,8 +68,6 @@ class ViewBusScreen extends Component {
     RouteApiService.getRoutes().then((response) => {
       console.log(response);
       this.setState({
-       // console.log("in 71");
-      // console.log(response);
         routes: response.data,
       });
       console.log(response);
@@ -82,30 +75,35 @@ class ViewBusScreen extends Component {
       this.state.routes.map((route) => {
         console.log(route);
       });
-      console.log(`response status : ${response.status}`);
+      console.log(response);
       const uniqueTags = [];
       this.state.routes.map((route) => {
         let findItem = uniqueTags.find((x) => x === route.source);
         if (!findItem) uniqueTags.push(route.source);
       });
+      console.log(uniqueTags);
       this.setState({
         uniqueSources: uniqueTags,
       });
       this.state.uniqueSources.map((uniqueSource) =>
-        console.log(`source : ${uniqueSource}`)
+        console.log(uniqueSource)
       );
     });
   }
 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
   onSelectBus = (bus) => {
-    // const bus = find(this.state.busList, { bus: { id: `${busId}` } });
+   
     console.log(`bus-id : ${bus.bus.busid}`);
     this.setState({
       selectedBus: bus.bus,
       seats: bus.bus.totalSeats,
+      //seats1.fill(0,0,this.state.seats)
     });
-    console.log(`seats : ${this.state.seats}`);
+    
+        console.log(this.state.seats1);
+       // console.log(this.state.);
+    console.log(this.state.seats);
   };
   selectSeat = (e) => {
     e.preventDefault();
@@ -139,6 +137,14 @@ class ViewBusScreen extends Component {
     });
   };
 
+
+   disableFutureDate = () => {
+    const today = new Date();
+    const dd = String(today.getDate() +1).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    return yyyy + "-" + mm + "-" + dd;
+  };
   render() {
     return (
       <div>
@@ -187,6 +193,7 @@ class ViewBusScreen extends Component {
             type="date"
             id="dateOfJourney"
             name="dateOfJourney"
+            min={this.disableFutureDate()}
             style={{width:"30vw", padding:"5px"}}
             onChange={this.onChange}
           ></input>
@@ -246,7 +253,8 @@ class ViewBusScreen extends Component {
                         <tr>
 
                           
-                          <td>
+                        {this.state.seats1.map((e)=>{
+                        return(<td>
                             <button
                               type="button"
                               class="btn btn-warning"
@@ -256,7 +264,7 @@ class ViewBusScreen extends Component {
                             >
                               1
                             </button>
-                          </td>
+                          </td>);})}
                           <td>
                             <button
                               type="button"

@@ -16,15 +16,16 @@ function Login2(props) {
       password: userPassword,
     };
 
-    console.log(`email: ${user.email}`);
-    console.log(`password: ${user.password}`);
+   
     console.log("login suceefuuly");
-    //swal('Success','Logged in successfully','success');
+    
     UserApiService.signin(user.email,user.password).then((res)=>{
 swal('Success','Logged in successfully','success');
 console.log(res);
+const user1=JSON.stringify(res.data.user);
+console.log(user1);
 localStorage.setItem("token", res.data.jwt);
-localStorage.setItem("user", res.data.user);
+localStorage.setItem("user", user1);
 localStorage.setItem("userid", res.data.user.userid);
 localStorage.setItem("email", res.data.user.email);
 localStorage.setItem("mobile", res.data.user.mobile);
@@ -50,7 +51,7 @@ if (
 
     }).catch((e)=>{
       swal("Log in Failed","Please Enter valid Email and Password", "error")
-      console.log(`error : ${e}`);
+      console.log(e);
     })
   };
 

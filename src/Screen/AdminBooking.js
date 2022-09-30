@@ -61,7 +61,7 @@ class AdminBooking extends Component {
                     
                     <th>Seat Number</th>
                     <th>Fare</th>
-                    <th scope="col">Action</th>
+                   
                   </tr>
                 </thead>
                 <tbody>
@@ -76,15 +76,7 @@ class AdminBooking extends Component {
                         
                         <td>{booking.seatNumber}</td>
                         <td>{booking.fareAmount}</td>
-                        <td>
-                          <button
-                            type="button"
-                            class="btn btn-danger btn-md mt-0"
-                            onClick={() => this.cancelBooking(booking.id)}
-                          >
-                            Cancel
-                          </button>
-                        </td>
+                      
                       </tr>
                     );
                   })}

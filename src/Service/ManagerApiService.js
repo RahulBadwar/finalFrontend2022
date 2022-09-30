@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:9001";  //"https://immense-retreat-08081.herokuapp.com";
+axios.defaults.baseURL = "http://localhost:9001";  
 
 const header = {
   headers: {
@@ -10,12 +10,6 @@ const header = {
 };
 
 class ManagerApiService {
-  addAgent(agent) {
-    return axios.post("/manager/add-agent", agent, header);
-  }
-  addDriver(driver) {
-    return axios.post("/manager/add-driver", driver, header);
-  }
   getSchdeduleDetails() {
     return axios.get("/admin/get-schedule-details", header);
   }

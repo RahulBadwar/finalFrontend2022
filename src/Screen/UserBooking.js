@@ -37,15 +37,37 @@ import Passanger from "../Componets/PassangerNavBar";
         });
     }
   
+    componentDidUpdate(){
+//console.log("did upadte");
+
+      BookingApiService.showBookings(this.state.userid)
+        .then((response) => {
+          this.setState({
+            bookings: response.data,
+          });
+          //alert(response)
+
+          //console.log(response);
+          //console.log(this.state.bookings);
+        
+        })
+        .catch((error) => {
+          console.log(`Error : ${error}`);
+        });
+    }
     cancelBooking(e) {
       //const bookID = localStorage.getItem("bookId");
+console.log("incanacl booking");
       BookingApiService.cancelBooking(e).then(
         (res) => {
           this.setState({ message: "Booking Cancelled successfully." });
           swal("Booking Cancelled successfully","success");
-          this.props.history.push("/view-bus");
+          this.props.history.push("/passanger-booking");
         }
-      )
+      ).catch((e)=>{
+
+        console.log(e);
+      })
     }
 
   render() {
@@ -70,11 +92,13 @@ import Passanger from "../Componets/PassangerNavBar";
                   <th scope="col">Date</th>
                   <th scope="col">Bus Name</th>
                   <th scope="col">Bus Type</th>
-                  <th scope="col">Action</th>
+                
                 </tr>
               </thead>
               <tbody>
                 {this.state.bookings.map((booking) => {
+                  let x=new Date(booking.dateofJourny).getTime;
+               //   console.log(x+"x is");
                   return (
                     <tr>
                       
@@ -84,16 +108,9 @@ import Passanger from "../Componets/PassangerNavBar";
                       <td>{booking.dateofJourny}</td>
                       <td>{booking.bus.busName}</td>
                       <td>{booking.bus.busType}</td>
-                      <td>
-                        <button
-                          type="button"
-                          class="btn btn-danger btn-lg"
-                          onClick={()=>this.cancelBooking(booking.id)}
-                        >
-                          Cancel
-                        </button>
+                     
+                     
                         
-                      </td>
                     </tr>
                   );
                 })}
