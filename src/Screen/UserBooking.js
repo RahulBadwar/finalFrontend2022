@@ -37,27 +37,11 @@ import Passanger from "../Componets/PassangerNavBar";
         });
     }
   
-    componentDidUpdate(){
-//console.log("did upadte");
-
-      BookingApiService.showBookings(this.state.userid)
-        .then((response) => {
-          this.setState({
-            bookings: response.data,
-          });
-          //alert(response)
-
-          //console.log(response);
-          //console.log(this.state.bookings);
-        
-        })
-        .catch((error) => {
-          console.log(`Error : ${error}`);
-        });
-    }
+   
     cancelBooking(e) {
       //const bookID = localStorage.getItem("bookId");
 console.log("incanacl booking");
+alert("cancal button is clicked")
       BookingApiService.cancelBooking(e).then(
         (res) => {
           this.setState({ message: "Booking Cancelled successfully." });
@@ -92,7 +76,7 @@ console.log("incanacl booking");
                   <th scope="col">Date</th>
                   <th scope="col">Bus Name</th>
                   <th scope="col">Bus Type</th>
-                
+                 
                 </tr>
               </thead>
               <tbody>
@@ -108,8 +92,7 @@ console.log("incanacl booking");
                       <td>{booking.dateofJourny}</td>
                       <td>{booking.bus.busName}</td>
                       <td>{booking.bus.busType}</td>
-                     
-                     
+                      
                         
                     </tr>
                   );

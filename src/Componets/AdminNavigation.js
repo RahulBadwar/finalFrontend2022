@@ -2,15 +2,23 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import React from "react";
 import { useState } from "react";
-
+import { useHistory } from "react-router-dom";
 
 
 
 
 const AdminNavigation = (props) => {
 
-  if(localStorage.getItem('user')===null&&localStorage.getItem('user')===undefined){
-    props.history.push('/log-in')
+  const history = useHistory();
+
+  const user = localStorage.getItem('user')
+  //console.log(user.email);
+  console.log(user);
+
+  //alert("in idf")
+  if(user === null||user===undefined) {
+    //alert("in idf")
+          history.push("/log-in");
   }
 
  

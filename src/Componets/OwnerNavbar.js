@@ -1,15 +1,22 @@
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+
 import { useState } from "react";
 import moment from "moment";
+import { useHistory } from "react-router-dom";
+import React from "react";
 
 const Owner=(props)=>{
 
-  console.log(localStorage.getItem('user'));
+  const history = useHistory();
 
-  if(localStorage.getItem('user')===null||localStorage.getItem('user')===undefined){
-    props.history.push('/log-in')
-    console.log("i am here");
+  const user = localStorage.getItem('user')
+  //console.log(user.email);
+  console.log(user);
+
+  //alert("in idf")
+  if(user === null||user===undefined) {
+    //alert("in idf")
+          history.push("/log-in");
   }
 
 const Logout=()=>{
@@ -28,7 +35,21 @@ console.log("log in buuton clicked");
 
 }
 
+const[timer,setTime]=useState(new Date().toLocaleString('en-GB'));
+// useEffect(()=>{
+//   setTime(moment().format("DD-MM-YYYY hh:mm:ss a"));
+// },1000);
 
+React.useEffect(() => {
+  const timer = setInterval(() => {
+    setTime(new Date().toLocaleString('en-GB'
+    ));
+  }, 1000);
+
+  return () => {
+    clearInterval(timer);
+  };
+}, []);
 
     return(
 <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -71,7 +92,12 @@ console.log("log in buuton clicked");
                 <span className="nav-link">Add Bus</span>
                 </Link>
             </li>
+            <li className="nav-item">
+                  {timer}
+                  </li>
 
+
+             
               <li className="nav-item">
               
                   <button className="btn btn-outline-warning pt-0 pb-0" onClick={Logout}>

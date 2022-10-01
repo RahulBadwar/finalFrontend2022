@@ -11,7 +11,14 @@ const AdminHome=(props)=>{
         <div>
         <AdminNavigation/>
         <div>
-       <div style={{background:"rgb(166,219,223)"}}>
+        <div style={{backgroundImage: 
+       "url('https://wallpapercave.com/wp/wp2120656.jpg')",
+       backgroundSize: 'cover',margin:"20px",
+        backgroundRepeat: 'no-repeat',
+
+       backgroundRepeat: 'no-repeat',
+        height: "100vh"
+}}>
         <div className="container">
         <div class="row pt-5 pb-5">
             <div class="col-sm" style={{}}>
